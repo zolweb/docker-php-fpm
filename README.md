@@ -47,5 +47,5 @@ Automatic building is enabled, any tag push or master push trigger a build as fo
 
 Examples :
 - Pushing the tag `7.3.16` gives the image `zolweb/php-fpm:7.3.16`
-- Pushing the tag `7.4.4-composer-1.10.1` gives the image `zolweb/php-fpm:7.3.16-composer-1.10.1`
+- Pushing the tag `7.4.4-composer-1.10.1` gives the image `zolweb/php-fpm:7.4.4-composer-1.10.1`
 - Pushing to `master` updates the image `zolweb/php-fpm:latest`
