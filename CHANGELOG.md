@@ -2,7 +2,13 @@
 
 Tags come from PHP version installed + specific indication if needed
 
-## (24/03/2020) 7.3.16
+## 7.4.11
+Update date : 24/10/2020
+
+Push first 7.4 tag, updated with composer 1.10.15
+
+## 7.3.16
+Update date : 24/03/2020
 
 Initial commit with PHP 7.3.16 and composer 1.9.1
 
@@ -48,6 +54,7 @@ exif
 bz2
 xdebug
 
-## (30/09/2020) 7.2.33
+## 7.2.33
+Update date : 30/09/2020
 
 Add php 7.2 support. This is the same configuration than 7.3.16 for the package list, it's only here for retro compatibility with older projects

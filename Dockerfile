@@ -1,6 +1,6 @@
-FROM composer:1.9.1 AS composer
+FROM composer:1.10.15 AS composer
 
-FROM php:7.2.33-fpm
+FROM php:7.4.11-fpm
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 COPY --from=composer /usr/bin/composer /usr/bin/composer
@@ -31,7 +31,7 @@ RUN apt-get update -qq && apt-get install -qqy \
     && echo "Europe/Paris" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata \
     && echo 'alias ll="ls -lah --color=auto"' >> /etc/bash.bashrc \
     && docker-php-ext-configure intl \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
+    && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && docker-php-ext-install \
        iconv \
        intl \

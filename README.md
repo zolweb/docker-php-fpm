@@ -4,11 +4,15 @@ Manage DockerHub builds for php-fpm at ZOL
 
 The intended purpose of this repository is to provide branches and tags for a docker image with php-fpm and composer, with a system of branches and tags instead of a directory.
 
-The latest version is for PHP 7.3, composer 1.9.1
+The latest version is for PHP 7.4.11, composer 1.10.15
 
 ## How to update
 
 If you want to apply updates on this repository, checkout to the current tag you want to start with, create a new branch and apply your updates. Finally, tag the changes with a comprehensive changelog.
+
+Before pushing your changes, make sure it works by building the image locally :
+
+    docker build -t php-fpm:test .
 
 ## Rules to follow
 
@@ -16,7 +20,7 @@ If you want to apply updates on this repository, checkout to the current tag you
     
 - PHP versions must be specific (`7.3.16` instead of only `7.3`)
 
-- Each change must comes with an updated [CHANGELOG](CHANGELOG.md)
+- Each change must come with an updated [CHANGELOG](CHANGELOG.md)
 
 ## Notable facts
 
@@ -36,7 +40,7 @@ Installed packages : this image should be used for development only, it contains
 
 ## Dockerhub
 
-This project is built on [dockerhub, on zolweb account](https://hub.docker.com/repository/docker/zolweb/php-fpm). Images are free to use and come AS IS. ZOL is not responsible for any mis-usage or any problem it may comes.
+This project is built on [dockerhub, on zolweb account](https://hub.docker.com/repository/docker/zolweb/php-fpm). Images are free to use and come AS IS. ZOL is not responsible for any mis-usage or any problem it may cause.
 
 Automatic building is enabled, any tag push or master push trigger a build as following :
 
@@ -49,3 +53,5 @@ Examples :
 - Pushing the tag `7.3.16` gives the image `zolweb/php-fpm:7.3.16`
 - Pushing the tag `7.4.4-composer-1.10.1` gives the image `zolweb/php-fpm:7.4.4-composer-1.10.1`
 - Pushing to `master` updates the image `zolweb/php-fpm:latest`
+
+You should not use `latest` tag, as the push order on this repository is done following our own needs, not PHP versions. Use tag instead.
