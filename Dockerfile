@@ -1,6 +1,6 @@
-FROM composer:1.10.15 AS composer
+FROM composer:1.10.17 AS composer
 
-FROM php:7.4.11-fpm
+FROM php:5.6.40-fpm
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 COPY --from=composer /usr/bin/composer /usr/bin/composer
@@ -31,7 +31,7 @@ RUN apt-get update -qq && apt-get install -qqy \
     && echo "Europe/Paris" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata \
     && echo 'alias ll="ls -lah --color=auto"' >> /etc/bash.bashrc \
     && docker-php-ext-configure intl \
-    && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
     && docker-php-ext-install \
        iconv \
        intl \
@@ -43,8 +43,6 @@ RUN apt-get update -qq && apt-get install -qqy \
        gd \
        exif \
        bz2 \
-    && pecl install xdebug \
-    && docker-php-ext-enable xdebug \
     && usermod -u 1000 www-data \
     && groupmod -g 1000 www-data \
     && find / -user 33 -exec chown -h 1000 {} \; || true \
