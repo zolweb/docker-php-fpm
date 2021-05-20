@@ -1,6 +1,6 @@
 FROM composer:2.0.12 AS composer
 
-FROM php:8.0.3-fpm
+FROM php:8.0.2-fpm
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 COPY --from=composer /usr/bin/composer /usr/bin/composer
@@ -28,15 +28,19 @@ RUN apt-get update -qq && apt-get install -qqy \
     apt-transport-https lsb-release ca-certificates \
     software-properties-common \
     libbz2-dev \
+    libpq-dev \
     && echo "Europe/Paris" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata \
     && echo 'alias ll="ls -lah --color=auto"' >> /etc/bash.bashrc \
     && docker-php-ext-configure intl \
     && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
+    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install \
        iconv \
        intl \
        pdo \
        pdo_mysql \
+       pdo_pgsql \
+       pgsql \
        mbstring \
        opcache \
        zip \
