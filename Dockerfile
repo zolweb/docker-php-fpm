@@ -5,7 +5,7 @@ FROM php:7.3.16-fpm
 ENV COMPOSER_ALLOW_SUPERUSER 1
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-RUN apt-get update -qq && apt-get install -qqy \
+RUN apt-get --allow-releaseinfo-change update  -qq && apt-get install -qqy \
     sudo \
     wget \
     git \
