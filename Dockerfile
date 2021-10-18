@@ -24,6 +24,7 @@ RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
     libonig-dev \
     libmcrypt-dev \
     mariadb-client \
+    postgresql-client \
     libfreetype6-dev libjpeg-dev \
     apt-transport-https lsb-release ca-certificates \
     software-properties-common \
