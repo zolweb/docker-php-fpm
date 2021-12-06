@@ -1,6 +1,6 @@
-FROM composer:2.0.12 AS composer
+FROM composer:2.1.14 AS composer
 
-FROM php:8.0.6-fpm
+FROM php:8.1-fpm
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 COPY --from=composer /usr/bin/composer /usr/bin/composer
@@ -24,6 +24,7 @@ RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
     libonig-dev \
     libmcrypt-dev \
     mariadb-client \
+    postgresql-client \
     libfreetype6-dev libjpeg-dev \
     apt-transport-https lsb-release ca-certificates \
     software-properties-common \
