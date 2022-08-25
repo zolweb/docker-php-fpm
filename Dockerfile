@@ -30,6 +30,7 @@ RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
     software-properties-common \
     libbz2-dev \
     libpq-dev \
+    libwebp-dev \
     && echo "Europe/Paris" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata \
     && echo 'alias ll="ls -lah --color=auto"' >> /etc/bash.bashrc \
     && docker-php-ext-configure intl \
