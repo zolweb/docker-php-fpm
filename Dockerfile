@@ -30,10 +30,11 @@ RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
     software-properties-common \
     libbz2-dev \
     libpq-dev \
+    libwebp-dev \
     && echo "Europe/Paris" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata \
     && echo 'alias ll="ls -lah --color=auto"' >> /etc/bash.bashrc \
     && docker-php-ext-configure intl \
-    && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
+    && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ --with-webp \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install \
        iconv \
