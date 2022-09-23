@@ -2,6 +2,7 @@ FROM composer:2.1.14 AS composer
 
 FROM php:8.0.22-fpm
 
+ARG APCU_VERSION=5.1.18
 ENV COMPOSER_ALLOW_SUPERUSER 1
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
@@ -49,8 +50,8 @@ RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
        gd \
        exif \
        bz2 \
-    && pecl install xdebug \
-    && docker-php-ext-enable xdebug \
+    && pecl install xdebug apcu-${APCU_VERSION} \
+    && docker-php-ext-enable xdebug apcu \
     && usermod -u 1000 www-data \
     && groupmod -g 1000 www-data \
     && find / -user 33 -exec chown -h 1000 {} \; || true \
