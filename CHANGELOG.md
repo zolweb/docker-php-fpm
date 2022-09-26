@@ -2,6 +2,11 @@
 
 Tags come from PHP version installed + specific indication if needed
 
+## 7.4.30
+Update date : 26/09/2022
+
+Upgrade to php 7.4.30 and composer 2.4.1
+
 ## 7.4.11
 Update date : 24/10/2020
 
