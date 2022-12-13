@@ -6,7 +6,7 @@ Be careful : the list is ordered by more recent tag first, not php version it-se
 ## 8.2.0
 Update date : 13/12/2022
 
-Added PHP 8.2, update composer to 2.4.4
+Added PHP 8.2, update composer to 2.4.4, apcu to 5.1.22
 
 ## 8.1.10
 Update date : 23/09/2022 
