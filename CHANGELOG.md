@@ -2,6 +2,13 @@
 
 Tags come from PHP version installed + specific indication if needed
 
+
+## 7.4.30
+Added the line deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware to the /etc/apt/sources.list file in the Docker container.
+Changed :
+Updated the incorrect command pecl install xdebug with pecl install xdebug-2.9.8 for Xdebug installation.
+
+
 ## 7.4.30
 Update date : 26/09/2022
 

@@ -2,10 +2,14 @@ FROM composer:2.4.1 AS composer
 
 FROM php:7.4.30-fpm
 
+# For more informations: https://www.debian.org/security/
+RUN echo "deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware" >> /etc/apt/sources.list
+
 ENV COMPOSER_ALLOW_SUPERUSER 1
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-RUN apt-get update -qq && apt-get install -qqy \
+
+RUN apt-get update && apt-get install -qqy \
     sudo \
     wget \
     git \
@@ -43,8 +47,8 @@ RUN apt-get update -qq && apt-get install -qqy \
        gd \
        exif \
        bz2 \
-    && pecl install xdebug \
-    && docker-php-ext-enable xdebug \
+    && pecl install xdebug-2.9.8 \
+    && docker-php-ext-enable xdebug\
     && usermod -u 1000 www-data \
     && groupmod -g 1000 www-data \
     && find / -user 33 -exec chown -h 1000 {} \; || true \
