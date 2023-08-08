@@ -1,6 +1,6 @@
-FROM composer:2.4.4 AS composer
+FROM composer:2.5.8 AS composer
 
-FROM php:8.2.0-fpm
+FROM php:8.2.7-fpm
 
 ARG APCU_VERSION=5.1.22
 ENV COMPOSER_ALLOW_SUPERUSER 1
@@ -17,7 +17,7 @@ RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
     htop \
     unzip \
     tzdata \
-    netcat \
+    netcat-traditional \
     iproute2 \
     cron \
     libicu-dev \
