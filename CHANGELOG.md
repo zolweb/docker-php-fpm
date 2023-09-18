@@ -8,7 +8,6 @@ Update date : 18/09/2023
 
 Update PHP to 8.2.10
 
-- Blackfire installation moved from startup
 - Entrypoint back to php default
 - Zol common v8.0.3 and later required
 
