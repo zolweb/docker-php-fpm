@@ -56,17 +56,7 @@ RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
     && groupmod -g 1000 www-data \
     && find / -user 33 -exec chown -h 1000 {} \; || true \
     && find / -group 33 -exec chgrp -h 1000 {} \; || true \
-    && usermod -g 1000 www-data\
-    # Blackfire
-    version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
-    && architecture=$(uname -m) \
-    && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/$architecture/$version \
-    && mkdir -p /tmp/blackfire \
-    && tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp/blackfire \
-    && mv /tmp/blackfire/blackfire-*.so $(php -r "echo ini_get ('extension_dir');")/blackfire.so \
-    && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8307\n" > $PHP_INI_DIR/conf.d/blackfire.ini \
-    && rm -rf /tmp/blackfire /tmp/blackfire-probe.tar.gz
-
+    && usermod -g 1000 www-data
 
 # Custom logrotate configuration for symfony
 ADD logrotate/symfony /etc/logrotate.d/symfony
@@ -77,6 +67,8 @@ ADD logrotate/cron /etc/periodic/daily/logrotate-cron
 COPY php/php.ini /usr/local/etc/php/php.ini
 
 COPY script/start.sh /opt/scripts/start.sh
+COPY script/entry.sh /opt/scripts/entry.sh
+
 
 # Make sure every user can start the container
 RUN chown -R 1000:1000 /opt/scripts \
@@ -86,4 +78,5 @@ RUN chown -R 1000:1000 /opt/scripts \
 
 WORKDIR /var/www/html
 
+ENTRYPOINT ["/opt/scripts/entry.sh"]
 CMD ["/opt/scripts/start.sh"]
