@@ -91,5 +91,4 @@ RUN chown -R 1000:1000 /opt/scripts \
 
 WORKDIR /var/www/html
 
-# ENTRYPOINT ["/opt/scripts/entry.sh"]
 CMD ["/opt/scripts/start.sh"]

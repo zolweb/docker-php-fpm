@@ -3,6 +3,15 @@
 Tags come from PHP version installed + specific indication if needed.
 Be careful : the list is ordered by more recent tag first, not php version it-self, as recent version may include fixes and are added only if needed.
 
+## 8.2.10
+Update date : 18/09/2023
+
+Update PHP to 8.2.10
+
+- Blackfire installation moved from startup
+- Entrypoint back to php default
+- Zol common v8.0.3 and later required
+
 ## 8.2.7
 Update date : 08/08/2023
 
