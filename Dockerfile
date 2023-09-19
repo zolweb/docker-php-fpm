@@ -16,7 +16,7 @@ RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
     htop \
     unzip \
     tzdata \
-    netcat \
+    netcat-traditional \
     iproute2 \
     cron \
     libicu-dev \
