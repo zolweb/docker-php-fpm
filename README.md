@@ -38,6 +38,9 @@ RUN usermod -u 1001 www-data \
 
 Installed packages : this image should be used for development only, it contains multiple packages that may not be needed for production. Use it at your own risk.
 
+
+Blackfire is installed from the entrypoint so it's always up to date.
+
 ## Dockerhub
 
 This project is built on [dockerhub, on zolweb account](https://hub.docker.com/repository/docker/zolweb/php-fpm). Images are free to use and come AS IS. ZOL is not responsible for any mis-usage or any problem it may cause.
