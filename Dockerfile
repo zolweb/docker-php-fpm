@@ -1,6 +1,6 @@
 FROM composer:2.5.8 AS composer
 
-FROM php:8.2.7-fpm
+FROM php:8.2.10-fpm
 
 ARG APCU_VERSION=5.1.22
 ENV COMPOSER_ALLOW_SUPERUSER 1
@@ -69,10 +69,12 @@ COPY php/php.ini /usr/local/etc/php/php.ini
 COPY script/start.sh /opt/scripts/start.sh
 COPY script/entry.sh /opt/scripts/entry.sh
 
+
 # Make sure every user can start the container
 RUN chown -R 1000:1000 /opt/scripts \
-    && chmod 0777 /opt/scripts/start.sh /opt/scripts/entry.sh \
+    && chmod 0777 /opt/scripts/start.sh \
     && chmod +x /etc/periodic/daily/logrotate-cron
+
 
 WORKDIR /var/www/html
 
