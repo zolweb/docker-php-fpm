@@ -69,6 +69,7 @@ COPY php/php.ini /usr/local/etc/php/php.ini
 COPY script/start.sh /opt/scripts/start.sh
 COPY script/entry.sh /opt/scripts/entry.sh
 
+RUN chmod +x /opt/scripts/entry.sh
 
 # Make sure every user can start the container
 RUN chown -R 1000:1000 /opt/scripts \
