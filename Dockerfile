@@ -1,6 +1,6 @@
 FROM composer:2.1.14 AS composer
 
-FROM php:8.1.8-fpm
+FROM php:8.1.23-fpm
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 COPY --from=composer /usr/bin/composer /usr/bin/composer
