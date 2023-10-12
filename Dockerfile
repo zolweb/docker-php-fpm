@@ -1,6 +1,6 @@
 FROM composer:2.5.8 AS composer
 
-FROM php:8.2.10-fpm
+FROM php:8.2.11-fpm
 
 ARG APCU_VERSION=5.1.22
 ENV COMPOSER_ALLOW_SUPERUSER 1
@@ -32,7 +32,7 @@ RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
     libbz2-dev \
     libpq-dev \
     libwebp-dev \
-    && echo "Europe/Paris" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata \
+    && echo UTC > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata \
     && echo 'alias ll="ls -lah --color=auto"' >> /etc/bash.bashrc \
     && docker-php-ext-configure intl \
     && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ --with-webp \
