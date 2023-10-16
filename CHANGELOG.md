@@ -3,6 +3,12 @@
 Tags come from PHP version installed + specific indication if needed.
 Be careful : the list is ordered by more recent tag first, not php version it-self, as recent version may include fixes and are added only if needed.
 
+## 8.1.24
+Update date : 16/10/2023
+
+Update PHP to 8.1.24
+
+- Using UTC default timezone
 
 ## 8.1.23
 Update date : 18/09/2023
