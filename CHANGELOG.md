@@ -3,6 +3,18 @@
 Tags come from PHP version installed + specific indication if needed.
 Be careful : the list is ordered by more recent tag first, not php version it-self, as recent version may include fixes and are added only if needed.
 
+## 8.2.11-perf
+Update date : 06/11/2023
+
+Remove xdebug and blackfire from the image to test a build without these tools
+
+## 8.2.11
+Update date : 12/10/2023
+
+Update PHP to 8.2.11
+
+- Using UTC default timezone
+
 ## 8.2.11
 Update date : 12/10/2023
 

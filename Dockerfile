@@ -50,8 +50,8 @@ RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
        gd \
        exif \
        bz2 \
-    && pecl install xdebug apcu-${APCU_VERSION} \
-    && docker-php-ext-enable xdebug apcu \
+    && pecl install apcu-${APCU_VERSION} \
+    && docker-php-ext-enable apcu \
     && usermod -u 1000 www-data \
     && groupmod -g 1000 www-data \
     && find / -user 33 -exec chown -h 1000 {} \; || true \
