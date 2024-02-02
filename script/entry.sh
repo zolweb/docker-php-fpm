@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-
-set -e
-
-BLACKFIRE_ENABLE="${BLACKFIRE_ENABLE:-false}"
-
 wait_single_host() {
   local host=$1
   shift
@@ -28,18 +23,14 @@ main () {
     # Install blackfire automatically
     # Don't install it if it's already installed
     # Do not try it if container is not started as root
-    echo "$BLACKFIRE_ENABLE"
-    if [ ! -f /usr/local/etc/php/conf.d/blackfire.ini ] && [ $(id -u) = 0 ] && $BLACKFIRE_ENABLE ;
+    if [ ! -f /usr/local/etc/php/conf.d/blackfire.ini ] && [ $(id -u) = 0 ];
         then
-        echo "Blackfire enabled !"
         version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;")
         curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version > /dev/null
         tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp
         chmod 644 /tmp/blackfire-*.so
         mv /tmp/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so
         printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8707\n" > /usr/local/etc/php/conf.d/blackfire.ini
-        else
-        echo "Blackfire disabled !"
     fi
 }
 
