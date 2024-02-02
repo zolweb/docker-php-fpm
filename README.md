@@ -6,6 +6,13 @@ The intended purpose of this repository is to provide branches and tags for a do
 
 See [CHANGELOG](CHANGELOG.md) for all available versions.
 
+## Variable
+
+| Name | Default | Type |
+|------------------|-------|---------|
+| BLACKFIRE_ENABLE | false | boolean |
+
+
 ## How to update
 
 If you want to apply updates on this repository, checkout to the current tag you want to start with, create a new branch and apply your updates. Finally, tag the changes with a comprehensive changelog.
