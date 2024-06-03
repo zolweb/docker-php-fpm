@@ -11,9 +11,7 @@ php_logs() {
 		&& touch "${access_log_file}" \
 		&& touch "${error_log_file}"
 
-	if [ -n "$UID" ] && [ -n "$GID" ]; then
-		chown -R "$UID:$GID" "${log_dir}"
-	fi
+	chown -R www-data "${log_dir}"
 
 	# The "c" supplementary letter is needed because the first letter will be cut at replacement.
 	sed -i \
@@ -32,12 +30,8 @@ symfony_logs() {
 	html_dir="/var/www/html"
 	var_dir="${html_dir}/var"
 
-	if [ -n "$UID" ] && [ -n "$GID" ]; then
-		# To avoid permissions issues, create directly the /var/www/html/var directory and give it to $UID:$GID
-
-		mkdir -p "${var_dir}"
-		chown -R "$UID:$GID ${var_dir}"
-	fi
+	mkdir -p "${var_dir}"
+	chown -R www-data "${var_dir}"
 }
 
 php_logs
