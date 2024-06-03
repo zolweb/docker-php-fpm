@@ -66,17 +66,18 @@ ADD logrotate/cron /etc/periodic/daily/logrotate-cron
 # Custom PHP configuration
 COPY php/php.ini /usr/local/etc/php/php.ini
 
+COPY script/prepare.sh /opt/scripts/prepare.sh
 COPY script/start.sh /opt/scripts/start.sh
 COPY script/entry.sh /opt/scripts/entry.sh
 
 
 # Make sure every user can start the container
 RUN chown -R 1000:1000 /opt/scripts \
-    && chmod 0777 /opt/scripts/start.sh /opt/scripts/entry.sh \
+    && chmod 0777 /opt/scripts/{prepare,start,entry}.sh \
     && chmod +x /etc/periodic/daily/logrotate-cron
 
 
 WORKDIR /var/www/html
 
-ENTRYPOINT ["/opt/scripts/entry.sh"]
+ENTRYPOINT ["/opt/scripts/prepare.sh", "/opt/scripts/entry.sh"]
 CMD ["/opt/scripts/start.sh"]
