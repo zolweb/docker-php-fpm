@@ -35,7 +35,17 @@ symfony_logs() {
 	www_folder "${html_dir}/var"
 }
 
+symfony_vendor() {
+	www_folder "${html_dir}/vendor"
+}
+
+symfony_public() {
+	www_folder "${html_dir}/public"
+}
+
 php_logs
 symfony_logs
+symfony_vendor
+symfony_public
 
 exec "$@"
