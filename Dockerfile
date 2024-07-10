@@ -1,6 +1,6 @@
-FROM composer:2.5.8 AS composer
+FROM composer:2.7.7 AS composer
 
-FROM php:8.2.10-fpm
+FROM php:8.3.7-fpm
 
 ARG APCU_VERSION=5.1.22
 ENV COMPOSER_ALLOW_SUPERUSER 1
