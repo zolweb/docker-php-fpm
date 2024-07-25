@@ -1,8 +1,8 @@
-FROM composer:2.4.1 AS composer
+FROM composer:2.7.7 AS composer
 
-FROM php:7.4.30-fpm
+FROM php:7.4.33-fpm
 
-ENV COMPOSER_ALLOW_SUPERUSER 1
+ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update -qq && apt-get install -qqy \
@@ -43,7 +43,7 @@ RUN apt-get update -qq && apt-get install -qqy \
        gd \
        exif \
        bz2 \
-    && pecl install xdebug \
+    && pecl install xdebug-3.1.5 \
     && docker-php-ext-enable xdebug \
     && usermod -u 1000 www-data \
     && groupmod -g 1000 www-data \

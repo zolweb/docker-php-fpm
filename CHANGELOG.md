@@ -2,6 +2,13 @@
 
 Tags come from PHP version installed + specific indication if needed
 
+## 7.4.33
+Update date : 25/07/2024
+
+Upgrade to php 7.4.33 and composer 2.7.7
+Change entry.sh to use `exec` to be compatible with latest zol-common version
+Fix xdebug version to 3.1.5 to be compatible with php 7.X
+
 ## 7.4.30
 Update date : 26/09/2022
 
