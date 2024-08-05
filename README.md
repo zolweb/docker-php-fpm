@@ -4,8 +4,6 @@ Manage DockerHub builds for php-fpm at ZOL
 
 The intended purpose of this repository is to provide branches and tags for a docker image with php-fpm and composer, with a system of branches and tags instead of a directory.
 
-The latest version is for PHP 7.4.11, composer 1.10.15
-
 ## How to update
 
 If you want to apply updates on this repository, checkout to the current tag you want to start with, create a new branch and apply your updates. Finally, tag the changes with a comprehensive changelog.

@@ -19,6 +19,13 @@ Update date : 24/10/2020
 
 Push first 7.4 tag, updated with composer 1.10.15
 
+## 7.3.33
+Update date : 05/08/2024
+
+Update to php 7.3.33 and composer 1.10.27
+Change entry.sh to use `exec` to be compatible with latest zol-common version
+Fix xdebug version to 3.1.5 to be compatible with php 7.X
+
 ## 7.3.16
 Update date : 24/03/2020
 
