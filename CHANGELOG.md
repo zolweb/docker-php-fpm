@@ -3,6 +3,11 @@
 Tags come from PHP version installed + specific indication if needed.
 Be careful : the list is ordered by more recent tag first, not php version it-self, as recent version may include fixes and are added only if needed.
 
+## 8.4.1
+Update date :  26/01/2024
+
+Update PHP to 8.4.1, composer to 2.8.3
+
 ## 8.3.7
 Update date :  10/07/2024
 

@@ -1,9 +1,9 @@
-FROM composer:2.7.7 AS composer
+FROM composer:2.8.3 AS composer
 
-FROM php:8.3.7-fpm
+FROM php:8.4.1-fpm
 
 ARG APCU_VERSION=5.1.22
-ENV COMPOSER_ALLOW_SUPERUSER 1
+ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
@@ -49,10 +49,17 @@ RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
        zip \
        gd \
        exif \
-       bz2 \
-    && pecl install xdebug apcu-${APCU_VERSION} \
-    && docker-php-ext-enable xdebug apcu \
-    && usermod -u 1000 www-data \
+       bz2
+
+# TODO : to this day (26/11/2024), xdebug is not compatible with PHP 8.4 yet
+# See https://pecl.php.net/package-changelog.php?package=xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
+RUN pecl install apcu-${APCU_VERSION} \
+    && docker-php-ext-enable apcu
+
+RUN usermod -u 1000 www-data \
     && groupmod -g 1000 www-data \
     && find / -user 33 -exec chown -h 1000 {} \; || true \
     && find / -group 33 -exec chgrp -h 1000 {} \; || true \
