@@ -44,7 +44,7 @@ RUN apt-get update -qq && apt-get install -qqy \
        exif \
        bz2 \
     && pecl install xdebug-2.9.8 \
-    && docker-php-ext-enable xdebug-2.9.8 \
+    && docker-php-ext-enable xdebug \
     && usermod -u 1000 www-data \
     && groupmod -g 1000 www-data \
     && find / -user 33 -exec chown -h 1000 {} \; || true \
