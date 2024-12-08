@@ -2,6 +2,11 @@
 
 Tags come from PHP version installed + specific indication if needed
 
+## 7.1.33-composer-1.10.27
+Update date : 07/12/2024
+
+Added PHP 7.1.33 and composer 1.10.27 for retro compatibility
+
 ## 7.4.30
 Update date : 26/09/2022
 
