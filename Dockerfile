@@ -1,9 +1,9 @@
-FROM composer:2.7.7 AS composer
+FROM composer:2.9.5 AS composer
 
-FROM php:8.3.7-fpm
+FROM php:8.5.3-fpm
 
 ARG APCU_VERSION=5.1.22
-ENV COMPOSER_ALLOW_SUPERUSER 1
+ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
@@ -28,7 +28,6 @@ RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
     postgresql-client \
     libfreetype6-dev libjpeg-dev \
     apt-transport-https lsb-release ca-certificates \
-    software-properties-common \
     libbz2-dev \
     libpq-dev \
     libwebp-dev \
@@ -52,11 +51,11 @@ RUN apt-get --allow-releaseinfo-change update -qq && apt-get install -qqy \
        bz2 \
     && pecl install xdebug apcu-${APCU_VERSION} \
     && docker-php-ext-enable xdebug apcu \
-    && usermod -u 1000 www-data \
     && groupmod -g 1000 www-data \
-    && find / -user 33 -exec chown -h 1000 {} \; || true \
-    && find / -group 33 -exec chgrp -h 1000 {} \; || true \
-    && usermod -g 1000 www-data
+    && usermod -u 1000 www-data \
+    && usermod -g 1000 www-data \
+    && find / -user 33 -exec chown -h 1000 {} \; 2>/dev/null || true \
+    && find / -group 33 -exec chgrp -h 1000 {} \; 2>/dev/null || true
 
 # Custom logrotate configuration for symfony
 ADD logrotate/symfony /etc/logrotate.d/symfony
