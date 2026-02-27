@@ -3,6 +3,20 @@
 Tags come from PHP version installed + specific indication if needed.
 Be careful : the list is ordered by more recent tag first, not php version it-self, as recent version may include fixes and are added only if needed.
 
+## 8.5.3
+Update date : 27/02/2026
+
+Update PHP to 8.5.3, composer to 2.9.5
+
+- Fixed package compatibility issues for PHP 8.5 base image
+- Removed `software-properties-common` package (no longer available in Debian 12)
+- Fixed user/group management order to prevent errors
+- Improved find command error handling by redirecting stderr to /dev/null
+- All PHP extensions and dependencies working correctly
+
+### Breaking changes from 8.3.7
+- Removed `software-properties-common` package - if your application depends on this, you may need to install it manually or use an alternative approach
+
 ## 8.3.7
 Update date :  10/07/2024
 
